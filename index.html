@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday — Badminton Edition 🎂🏸</title>
+  <style>
+    :root{
+      --pink:#ffd1dc; --blush:#fff4f8; --lav:#e9d7ff; --mint:#d7fff3; --sun:#fff3c7;
+      --ink:#333; --muted:#7a7a7a; --card:#ffffff; --accent:#ff91a4;
+    }
+    /* ===== Base ===== */
+    html,body{height:100%;}
+    body{
+      display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0;
+      background: radial-gradient(1200px 700px at 10% 10%, var(--sun), transparent 60%),
+                  radial-gradient(900px 600px at 90% 20%, var(--mint), transparent 60%),
+                  radial-gradient(800px 600px at 10% 90%, var(--lav), transparent 60%),
+                  linear-gradient(135deg, var(--pink), var(--blush));
+      font-family: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      overflow:hidden; perspective:1000px; color:var(--ink);
+    }
+
+    /* ===== Floating Shuttlecocks (background) ===== */
+    .bg-shuttle{position:fixed; font-size:22px; opacity:0; animation:float 9s linear infinite; z-index:-1}
+    @keyframes float{
+      0%{opacity:0; transform:translateY(100vh) rotate(0deg) scale(0.9)}
+      10%{opacity:.15}
+      90%{opacity:.15}
+      100%{opacity:0; transform:translateY(-15vh) rotate(360deg) scale(1)}
+    }
+
+    /* ===== Playful Mascot (Birthday Cat with Racket) ===== */
+    .mascot{position:absolute; width:90px; height:90px; left:50%; top:24px; transform:translateX(-50%); pointer-events:none}
+    .cat-head{width:68px; height:56px; background:#808080; border-radius:30px; position:relative; margin:0 auto; box-shadow:0 6px 0 rgba(0,0,0,0.06) inset}
+    .ear{position:absolute; top:-16px; width:0; height:0; border-left:13px solid transparent; border-right:13px solid transparent; border-bottom:26px solid #808080;}
+    .ear.left{left:4px; transform:rotate(-18deg)}
+    .ear.right{right:4px; transform:rotate(18deg)}
+    .eye{position:absolute; top:22px; width:11px; height:11px; background:#000; border-radius:50%; animation:blink 3.2s infinite}
+    .eye.left{left:18px}
+    .eye.right{right:18px}
+    .nose{position:absolute; top:34px; left:50%; transform:translateX(-50%); width:7px; height:5px; background:#ff9eb5; border-radius:3px}
+    .whisker{position:absolute; top:32px; width:22px; height:2px; background:#666}
+    .w1{left:-16px; transform:rotate(-10deg)} .w2{left:-16px; top:36px} .w3{left:-16px; top:40px; transform:rotate(10deg)}
+    .w4{right:-16px; transform:rotate(10deg)} .w5{right:-16px; top:36px} .w6{right:-16px; top:40px; transform:rotate(-10deg)}
+    @keyframes blink{0%,95%,100%{transform:scaleY(1)} 97%{transform:scaleY(.1)}}
+    .party-hat{position:absolute; left:50%; transform:translateX(-50%) rotate(-5deg); top:-24px; width:0;height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:26px solid var(--accent)}
+    .party-hat:after{content:""; position:absolute; left:-2px; top:-7px; width:6px; height:6px; border-radius:50%; background:#fff}
+    .racket{position:absolute; right:-12px; bottom:-6px; width:36px; height:36px; border:2px solid #444; border-radius:50% 50% 44% 44% / 50% 50% 40% 40%; transform:rotate(30deg)}
+    .racket:after{content:""; position:absolute; left:14px; bottom:-16px; width:6px; height:22px; background:#444; border-radius:3px}
+
+    /* ===== Deck ===== */
+    .deck-container{position:relative; width:320px; height:440px; margin:50px}
+    .card{
+      position:absolute; inset:0; background:var(--card); border-radius:20px; padding:20px; box-sizing:border-box; cursor:pointer; transition:transform .85s ease-out, box-shadow .2s ease; backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    .card:hover{transform:translateX(-2px) translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.12)}
+
+    /* Cute corners */
+    .corner{position:absolute; width:42px; height:42px; opacity:.25; display:grid; place-items:center; font-size:24px}
+    .tl{top:8px; left:8px; transform:rotate(-20deg)}
+    .tr{top:8px; right:8px; transform:rotate(20deg)}
+    .bl{bottom:8px; left:8px; transform:rotate(20deg)}
+    .br{bottom:8px; right:8px; transform:rotate(-20deg)}
+
+    .title{font-weight:800; font-size:1.4rem; text-align:center; margin:8px 0 4px}
+    .subtitle{font-size:1rem; color:var(--muted); margin:0 0 8px}
+    .message{font-size:1.15rem; text-align:center; margin:8px 0;}
+    .comment{width:92%; min-height:56%; border:2px dashed var(--accent); border-radius:14px; padding:12px; background:
+      linear-gradient(45deg, transparent 49%, #fff1f4 49% 51%, transparent 51%);
+      background-size:20px 20px; font-family:"Comic Sans MS", "Patrick Hand", system-ui; font-size:17px; color:#444
+    }
+
+    /* Scatter poses */
+    .card.r0{transform:translate(-80%, -60%) rotate(-15deg)}
+    .card.r1{transform:translate(80%, -60%) rotate(15deg)}
+    .card.r2{transform:translate(-80%, 60%) rotate(15deg)}
+    .card.r3{transform:translate(80%, 60%) rotate(-15deg)}
+    .card.r4{transform:translate(-100%, 0) rotate(-10deg)}
+    .card.r5{transform:translate(100%, 0) rotate(10deg)}
+    .card.r6{transform:translate(0, -90%) rotate(6deg)}
+    .card.r7{transform:translate(0, 90%) rotate(-6deg)}
+    .card.r8{transform:translate(-60%, -40%) rotate(8deg)}
+    .card.r9{transform:translate(60%, 40%) rotate(-8deg)}
+
+    /* Instructions + Button */
+    .instructions{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,.9); padding:10px 18px; border-radius:28px; box-shadow:0 6px 22px rgba(0,0,0,.12); z-index:5}
+    .restart{position:fixed; top:18px; right:18px; padding:10px 18px; background:var(--accent); color:#fff; border:none; border-radius:22px; cursor:pointer; font-weight:700; box-shadow:0 8px 20px rgba(255,145,164,.45); z-index:5}
+    .restart:hover{transform:translateY(-1px)}
+
+    /* Floating hearts & confetti */
+    .float{position:absolute; font-size:16px; color:#ff9eb5; animation:up 3s infinite; opacity:0}
+    @keyframes up{0%{transform:translateY(0); opacity:0} 50%{opacity:.7} 100%{transform:translateY(-50px); opacity:0}}
+
+    .confetti{position:fixed; inset:0; pointer-events:none; z-index:2}
+    .piece{position:absolute; width:8px; height:14px; background:#ffd1dc; animation:drop 3.4s linear forwards}
+    .piece:nth-child(3n){background:#d7fff3}
+    .piece:nth-child(4n){background:#e9d7ff}
+    .piece:nth-child(5n){background:#fff3c7}
+    @keyframes drop{0%{transform:translateY(-10vh) rotate(0)} 100%{transform:translateY(110vh) rotate(540deg)}}
+  </style>
+</head>
+<body>
+  <!-- Background shuttlecocks -->
+  <div id="bg"></div>
+
+  <!-- Confetti container -->
+  <div class="confetti" id="confetti"></div>
+
+  <div class="deck-container" id="deck"></div>
+  <button class="restart" onclick="restartDeck()">Reset Deck</button>
+  <div class="instructions">Tap the top card to scatter the wishes! 🏸🎂</div>
+
+  <script>
+    /* ===== Data: Birthday + Badminton theme ===== */
+    const wishes = [
+      { title: "Happy Purr-thday, Fahad!", subtitle: "From all of us", mascot:true, message: "Serving you smiles, smashing you joy, and rallying for the best year yet!" },
+      { title: "Shuttle of Joy", subtitle: "Ayush", comment: "May your year be full of clean smashes, cozy cat naps, and cake points. You’re a total champ—have a meow-velous birthday!" },
+      { title: "Ace Another Year", subtitle: "Niku", comment: "Wishing you drop-shot levels of finesse and smash-level excitement today. Keep shining!" },
+      { title: "Rally of Hugs", subtitle: "Niku", comment: "Here’s to rallies of laughter, zero unforced errors, and a scoreboard stacked with happy moments." },
+      { title: "Feather-Light Fun", subtitle: "Niku", comment: "Hope your day feels as light as a shuttle and as sweet as frosting. Go win the day!" },
+      { title: "Match Point: Cake!", subtitle: "Niku", comment: "Game plan: Slice cake, laugh a lot, repeat. So proud of you—have the best birthday!" },
+      { title: "Court Couture", subtitle: "Niku", comment: "You serve style and kindness like a pro. Sending confetti, cuddles, and cat emojis!" },
+      { title: "Good Vibes Only", subtitle: "Niku", comment: "Wishing you crispy net shots, perfect clears, and a year that stays in-bounds for joy." },
+      { title: "Paws & Rackets", subtitle: "Niku", comment: "If life tosses a lob, smash it with a grin. You’ve got this—birthday legend!" },
+      { title: "Birthday Rally", subtitle: "Niku", comment: "Thanks for being amazing on and off the court. Here’s to a season of wins!" },
+      { title: "Final Set: Wishes", subtitle: "Everyone", comment: "May your dreams soar higher than a perfect clear. Happy Birthday!" },
+    ];
+
+    function el(tag, cls){ const d=document.createElement(tag); if(cls) d.className=cls; return d; }
+
+    /* ===== Background shuttles ===== */
+    function spawnShuttles(){
+      const bg=document.getElementById('bg'); bg.innerHTML='';
+      for(let i=0;i<18;i++){
+        const s=el('div','bg-shuttle'); s.textContent='🏸';
+        s.style.left=Math.random()*100+'vw';
+        s.style.animationDelay=(Math.random()*8)+'s';
+        s.style.fontSize=(18 + Math.random()*10)+'px';
+        bg.appendChild(s);
+      }
+    }
+
+    /* ===== Confetti ===== */
+    function popConfetti(){
+      const c=document.getElementById('confetti'); c.innerHTML='';
+      const N=60; const w=window.innerWidth; const h=window.innerHeight;
+      for(let i=0;i<N;i++){
+        const p=el('span','piece');
+        p.style.left=Math.random()*w+'px';
+        p.style.top=(-20 - Math.random()*60)+'px';
+        p.style.animationDelay=(Math.random()*0.8)+'s';
+        p.style.transform=`translateY(-10vh) rotate(${Math.random()*180}deg)`;
+        c.appendChild(p);
+      }
+      setTimeout(()=> c.innerHTML='', 3800);
+    }
+
+    /* ===== Mascot ===== */
+    function mascotHTML(){
+      return `
+        <div class="mascot">
+          <div class="cat-head">
+            <div class="party-hat"></div>
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="nose"></div>
+            <div class="whisker w1"></div>
+            <div class="whisker w2"></div>
+            <div class="whisker w3"></div>
+            <div class="whisker w4"></div>
+            <div class="whisker w5"></div>
+            <div class="whisker w6"></div>
+            <div class="racket"></div>
+          </div>
+        </div>`;
+    }
+
+    /* ===== Floating hearts ===== */
+    function floatingHearts(){
+      let hearts='';
+      for(let i=0;i<3;i++){
+        const delay=Math.random()*3; const left=20 + Math.random()*60;
+        hearts += `<div class="float" style="left:${left}%; animation-delay:${delay}s">♥</div>`;
+      }
+      return hearts;
+    }
+
+    /* ===== Deck ===== */
+    function buildDeck(){
+      const deck=document.getElementById('deck'); deck.innerHTML='';
+      wishes.forEach((w,idx)=>{
+        const card=el('div','card'); card.style.zIndex=wishes.length-idx;
+        const t=el('div','corner tl'); t.textContent='🏸';
+        const tr=el('div','corner tr'); tr.textContent='🎀';
+        const bl=el('div','corner bl'); bl.textContent='🎈';
+        const br=el('div','corner br'); br.textContent='🎂';
+        card.append(t,tr,bl,br);
+
+        let inner='';
+        if(w.mascot){ inner += mascotHTML(); }
+        inner += `<h2 class="title">${w.title}</h2>`;
+        if(w.subtitle){ inner += `<p class="subtitle">${w.subtitle}</p>`; }
+        if(w.message){ inner += `<p class="message">${w.message}</p>`; }
+        if(w.comment){ inner += `<div class="comment">${w.comment}</div>`; }
+        inner += floatingHearts();
+        card.insertAdjacentHTML('beforeend', inner);
+
+        card.addEventListener('click', function(){
+          // Only scatter the top-most card
+          const cards=[...document.querySelectorAll('.card')];
+          const top=Math.max(...cards.map(c=>parseInt(c.style.zIndex)));
+          if(parseInt(this.style.zIndex)===top){
+            this.classList.add('r'+(idx%10)); this.style.zIndex=1; popConfetti();
+          }
+        });
+
+        deck.appendChild(card);
+      });
+    }
+
+    function restartDeck(){ buildDeck(); spawnShuttles(); }
+
+    // Init
+    spawnShuttles();
+    buildDeck();
+  </script>
+</body>
+</html>
