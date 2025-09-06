@@ -10,7 +10,7 @@
       --ink:#333; --muted:#7a7a7a; --card:#ffffff; --accent:#ff91a4; --vio:#b68cff;
     }
 
-    /* ===== Base ===== */
+    /* ===== Base (calmer, cleaner) ===== */
     html,body{height:100%}
     body{
       display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0;
@@ -19,36 +19,36 @@
         radial-gradient(900px 600px at 90% 20%, var(--mint), transparent 60%),
         radial-gradient(800px 600px at 10% 90%, var(--lav), transparent 60%),
         linear-gradient(135deg, var(--pink), var(--blush));
-      animation:bgShift 16s ease-in-out infinite alternate;
+      animation:bgShift 22s ease-in-out infinite alternate; /* slower */
       font-family: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       overflow:hidden; perspective:1000px; color:var(--ink);
     }
     @keyframes bgShift{
       0%{filter:hue-rotate(0deg) saturate(1)}
-      100%{filter:hue-rotate(18deg) saturate(1.15)}
+      100%{filter:hue-rotate(8deg) saturate(1.05)} /* gentler shift */
     }
 
-    /* ===== Floating Shuttlecocks (background) ===== */
-    .bg-shuttle{position:fixed; font-size:22px; opacity:0; animation:float 9s linear infinite; z-index:-1}
-    @keyframes float{0%{opacity:0; transform:translateY(100vh) rotate(0deg) scale(.9)}10%{opacity:.12}90%{opacity:.12}100%{opacity:0; transform:translateY(-15vh) rotate(360deg) scale(1)}}
+    /* ===== Background Shuttlecocks (bigger, fewer, softer) ===== */
+    .bg-shuttle{position:fixed; font-size:34px; opacity:.08; animation:float 14s linear infinite; z-index:-1}
+    @keyframes float{0%{opacity:0; transform:translateY(100vh) rotate(0deg) scale(1)}10%{opacity:.18}90%{opacity:.18}100%{opacity:0; transform:translateY(-15vh) rotate(360deg) scale(1.05)}}
 
     /* ===== Header Ribbon ===== */
     .ribbon{
       position:fixed; top:10px; left:50%; transform:translateX(-50%);
       background:rgba(255,255,255,.85); backdrop-filter:blur(6px);
-      padding:10px 18px; border-radius:999px; box-shadow:0 10px 30px rgba(0,0,0,.12);
+      padding:10px 18px; border-radius:999px; box-shadow:0 10px 30px rgba(0,0,0,.08);
       display:flex; align-items:center; gap:10px; z-index:6;
     }
     .titleText{font-weight:900; letter-spacing:.5px;
       background:linear-gradient(90deg,#ff6fa0,#ffb2c1,#b58cff,#7be9cd);
       -webkit-background-clip:text; background-clip:text; color:transparent; font-size:1.1rem;
     }
-    .spark{font-size:18px; animation:pulse 1.6s ease-in-out infinite}
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+    .spark{font-size:18px; animation:pulse 2.4s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
     /* ===== Playful Mascot (Birthday Cat with Racket) ===== */
-    .mascot{position:absolute; width:100px; height:100px; left:50%; top:56px; transform:translateX(-50%); pointer-events:none}
-    .cat-head{width:72px; height:58px; background:#808080; border-radius:30px; position:relative; margin:0 auto; box-shadow:0 6px 0 rgba(0,0,0,0.06) inset}
+    .mascot{position:absolute; width:110px; height:110px; left:50%; top:56px; transform:translateX(-50%); pointer-events:none}
+    .cat-head{width:78px; height:62px; background:#808080; border-radius:30px; position:relative; margin:0 auto; box-shadow:0 6px 0 rgba(0,0,0,0.06) inset}
     .ear{position:absolute; top:-16px; width:0; height:0; border-left:13px solid transparent; border-right:13px solid transparent; border-bottom:26px solid #808080}
     .ear.left{left:4px; transform:rotate(-18deg)}
     .ear.right{right:4px; transform:rotate(18deg)}
@@ -62,40 +62,41 @@
     @keyframes blink{0%,95%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
     .party-hat{position:absolute; left:50%; transform:translateX(-50%) rotate(-5deg); top:-24px; width:0;height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:26px solid var(--accent)}
     .party-hat:after{content:""; position:absolute; left:-2px; top:-7px; width:6px; height:6px; border-radius:50%; background:#fff}
-    .racket{position:absolute; right:-12px; bottom:-6px; width:36px; height:36px; border:2px solid #444; border-radius:50% 50% 44% 44% / 50% 50% 40% 40%; transform:rotate(30deg)}
+    .racket{position:absolute; right:-12px; bottom:-6px; width:36px; height:36px; border:2px solid #444; border-radius:50% 50% 44% 44% / 50% 50% 40% 40%; transform-origin:bottom left; animation:swing 2.8s ease-in-out infinite}
     .racket:after{content:""; position:absolute; left:14px; bottom:-16px; width:6px; height:22px; background:#444; border-radius:3px}
+    @keyframes swing{0%,100%{transform:rotate(18deg)}50%{transform:rotate(28deg)}}
     /* Sparkles around mascot */
-    .sparkle{position:absolute; font-size:14px; animation:twinkle 1.8s ease-in-out infinite; opacity:.8}
-    @keyframes twinkle{0%,100%{transform:scale(.8) rotate(0)}50%{transform:scale(1.2) rotate(25deg)}}
+    .sparkle{position:absolute; font-size:16px; animation:twinkle 2.4s ease-in-out infinite; opacity:.7}
+    @keyframes twinkle{0%,100%{transform:scale(.85) rotate(0)}50%{transform:scale(1.15) rotate(25deg)}}
 
     /* ===== Deck ===== */
-    .deck-container{position:relative; width:340px; height:460px; margin:70px}
+    .deck-container{position:relative; width:360px; height:480px; margin:70px}
     .card{
-      position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.85));
+      position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
       border-radius:22px; padding:20px; box-sizing:border-box; cursor:pointer; transition:transform .85s ease-out, box-shadow .2s ease; backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
       border: 2px solid transparent;
       background-image:
-        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.85)),
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)),
         linear-gradient(135deg, #ffc6d7, #e9d7ff);
       background-origin: border-box; background-clip: content-box, border-box;
     }
-    .card:hover{transform:translateX(-2px) translateY(-2px) rotate(0.2deg); box-shadow:0 14px 34px rgba(0,0,0,.12)}
+    .card:hover{transform:translateX(-2px) translateY(-2px) rotate(0.2deg); box-shadow:0 14px 34px rgba(0,0,0,.1)}
 
     /* Cute corners */
-    .corner{position:absolute; width:42px; height:42px; opacity:.25; display:grid; place-items:center; font-size:24px}
+    .corner{position:absolute; width:46px; height:46px; opacity:.22; display:grid; place-items:center; font-size:26px}
     .tl{top:8px; left:8px; transform:rotate(-20deg)}
     .tr{top:8px; right:8px; transform:rotate(20deg)}
     .bl{bottom:8px; left:8px; transform:rotate(20deg)}
     .br{bottom:8px; right:8px; transform:rotate(-20deg)}
 
-    .title{font-weight:800; font-size:1.4rem; text-align:center; margin:8px 0 4px;
+    .title{font-weight:800; font-size:1.45rem; text-align:center; margin:8px 0 4px;
       background:linear-gradient(90deg, #ff7aa2, #b58cff); -webkit-background-clip:text; background-clip:text; color:transparent}
     .subtitle{font-size:1rem; color:var(--muted); margin:0 0 8px}
     .message{font-size:1.15rem; text-align:center; margin:8px 0;}
     .comment{width:92%; min-height:56%; border:2px dashed var(--accent); border-radius:14px; padding:12px; background:
       linear-gradient(45deg, transparent 49%, #fff1f4 49% 51%, transparent 51%);
-      background-size:20px 20px; font-family:"Comic Sans MS", "Patrick Hand", system-ui; font-size:17px; color:#444
+      background-size:20px 20px; font-family:"Comic Sans MS", "Patrick Hand", system-ui; font-size:18px; color:#444
     }
 
     /* Scatter poses */
@@ -111,16 +112,17 @@
     .card.r9{transform:translate(60%, 40%) rotate(-8deg)}
 
     /* Instructions + Button */
-    .instructions{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,.9); padding:10px 18px; border-radius:28px; box-shadow:0 6px 22px rgba(0,0,0,.12); z-index:5}
-    .restart{position:fixed; top:18px; right:18px; padding:10px 18px; background:var(--accent); color:#fff; border:none; border-radius:22px; cursor:pointer; font-weight:700; box-shadow:0 8px 20px rgba(255,145,164,.45); z-index:5}
+    .instructions{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:rgba(255,255,255,.9); padding:10px 18px; border-radius:28px; box-shadow:0 6px 22px rgba(0,0,0,.1); z-index:5}
+    .restart{position:fixed; top:18px; right:18px; padding:10px 18px; background:var(--accent); color:#fff; border:none; border-radius:22px; cursor:pointer; font-weight:700; box-shadow:0 8px 20px rgba(255,145,164,.35); z-index:5}
     .restart:hover{transform:translateY(-1px)}
 
-    /* Floating hearts & confetti */
-    .float{position:absolute; font-size:16px; color:#ff9eb5; animation:up 3s infinite; opacity:0}
-    @keyframes up{0%{transform:translateY(0); opacity:0} 50%{opacity:.7} 100%{transform:translateY(-50px); opacity:0}}
+    /* Floating hearts & balloons (bigger, calmer) */
+    .float{position:absolute; font-size:24px; color:#ff9eb5; animation:up 4.2s ease-in-out infinite; opacity:0}
+    @keyframes up{0%{transform:translateY(0) opacity(0)} 15%{opacity:.4} 85%{opacity:.4} 100%{transform:translateY(-65px); opacity:0}}
 
+    /* Confetti (lighter, fewer) */
     .confetti{position:fixed; inset:0; pointer-events:none; z-index:2}
-    .piece{position:absolute; width:8px; height:14px; background:#ffd1dc; animation:drop 3.4s linear forwards}
+    .piece{position:absolute; width:8px; height:14px; background:#ffd1dc; animation:drop 3.8s linear forwards; opacity:.8}
     .piece:nth-child(3n){background:#d7fff3}
     .piece:nth-child(4n){background:#e9d7ff}
     .piece:nth-child(5n){background:#fff3c7}
@@ -128,22 +130,22 @@
 
     /* ===== Party Overlay (starts the music) ===== */
     .overlay{
-      position:fixed; inset:0; background:rgba(255,255,255,.65); backdrop-filter:blur(6px);
+      position:fixed; inset:0; background:rgba(255,255,255,.6); backdrop-filter:blur(6px);
       display:grid; place-items:center; z-index:10;
     }
     .cta{
       display:flex; flex-direction:column; align-items:center; gap:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.85));
-      padding:24px 28px; border-radius:24px; box-shadow:0 20px 50px rgba(0,0,0,.15);
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.88));
+      padding:24px 28px; border-radius:24px; box-shadow:0 20px 50px rgba(0,0,0,.12);
       border:2px solid #ffe3ea;
       text-align:center;
       animation:pop 0.8s ease both;
     }
     .cta h1{margin:0; font-size:1.4rem}
     .cta .big{font-size:2rem}
-    .cta button{border:none; background:linear-gradient(90deg,#ff7aa2,#b58cff); color:#fff; font-weight:900; padding:12px 20px; border-radius:999px; cursor:pointer; box-shadow:0 12px 30px rgba(181,140,255,.35)}
+    .cta button{border:none; background:linear-gradient(90deg,#ff7aa2,#b58cff); color:#fff; font-weight:900; padding:12px 20px; border-radius:999px; cursor:pointer; box-shadow:0 12px 30px rgba(181,140,255,.3)}
     .cta button:hover{transform:translateY(-1px)}
-    @keyframes pop{0%{transform:scale(.9); opacity:0}100%{transform:scale(1); opacity:1}}
+    @keyframes pop{0%{transform:scale(.95); opacity:0}100%{transform:scale(1); opacity:1}}
 
     /* ===== Music HUD ===== */
     .hud{position:fixed; bottom:14px; right:14px; z-index:6; display:flex; gap:8px; align-items:center}
@@ -154,16 +156,26 @@
 
     /* ===== 3D tilt ===== */
     .tilt{transform-style:preserve-3d}
+
+    /* ===== Cute sticker drift (extra subtle animation) ===== */
+    .sticker{position:fixed; font-size:28px; opacity:.85; animation:drift 9s ease-in-out infinite alternate; pointer-events:none}
+    .sticker.s1{left:6vw; top:70vh}
+    .sticker.s2{right:8vw; top:22vh}
+    .sticker.s3{left:12vw; top:18vh}
+    @keyframes drift{0%{transform:translateY(0)}100%{transform:translateY(-12px)}}
   </style>
 </head>
 <body>
   <!-- Background shuttlecocks -->
   <div id="bg"></div>
 
-  <!-- Confetti container -->
+  <!-- Soft stickers -->
+  <div class="sticker s1">💝</div>
+  <div class="sticker s2">⭐️</div>
+  <div class="sticker s3">🫶</div>
+
   <div class="confetti" id="confetti"></div>
 
-  <!-- Ribbon header -->
   <div class="ribbon"><span class="spark">✨</span><span class="titleText">Happy Birthday, Sahar! 🎂🏸</span><span class="spark">✨</span></div>
 
   <!-- Deck -->
@@ -171,7 +183,6 @@
   <button class="restart" onclick="restartDeck()">Reset Deck</button>
   <div class="instructions">Tap the top card to scatter the wishes & start the party! 🎉</div>
 
-  <!-- Party overlay (user gesture to start audio) -->
   <div class="overlay" id="overlay">
     <div class="cta">
       <div class="big">🎀🎶</div>
@@ -189,38 +200,41 @@
   <script>
     /* ===== Data: Birthday + Badminton theme ===== */
     const wishes = [
-      { title: "Happy Purr-thday, Sahar!", subtitle: "From all of us", mascot:true, message: "Serving you smiles, smashing you joy, and rallying for the best year yet!" },
-      { title: "Shuttle of Joy", subtitle: "Fahad", comment: "Let’s play badminton again soon — I miss our rallies, and I definitely owe you a rematch!!" },
-      { title: "Ace Another Year", subtitle: "Fahad",  comment: "Let’s change the muzzle filter to 35 — a little longer!!" },
-      { title: "Rally of Hugs", subtitle: "Fahad",  comment: "It’s time we go to the masjid and find you the best match!!" },
-      { title: "Feather-Light Fun", subtitle: "Fahad",  comment: "Big thanks for making me create a marriage profile!!" },
-      { title: "Match Point: Cake!", subtitle: "Fahad",  comment: "Thanks for getting me hooked on SHEIN — my wallet is crying!!!" },
-      { title: "Court Couture", subtitle: "Fahad", comment: "Happy Birthday, Sahar! May your special day sparkle with joy and your year ahead be as beautiful as you are!" },
-      { title: "Good Vibes Only", subtitle: "Ayush",  comment: "Happy birthday, bacha! Thank you for being the sweetest ADD-ON to my life ❤️!" },
-      { title: "Paws & Rackets", subtitle: "Ayush", comment: "One of the cutest memories of ours is from the first day on court — I was rattling on about things while you were just staring... I was like, ‘God, will she please stop staring?’ and then laughing while looking to the other side… damn, she had already started judging me.!" },
-      { title: "Birthday Rally", subtitle: "Ayush",  comment: "You probably have the cutest smile BUA-JI on that bobblehead… so please just keep it together!" },
-      { title: "Birthday Rally", subtitle: "Ayush",  comment: "I love how you ask me something and then never actually listen… lol. Honestly, those 14 days of studying felt harder than my entire 2 years of Master’s. As for meditation — you learn it first and then teach me, okay? Chill Ayush, I’ll manage 😅✨" },
-      { title: "Final Set: Wishes", subtitle: "Ayush", comment: "Happy birthday, Sahar! 💫 May you always be blessed with all the happiness in the world. Keep shining and smiling with that adorable bobblehead smile of yours. You’re truly so talented and sweet, and I know you’ll do amazingly well in life." },
-    ];
+  { title: "🏸 Smash of Smiles 🎀", subtitle: "From all of us", mascot:true, message: "Serving you smiles, smashing you joy, and rallying for the best year yet!" },
+  { title: "Shuttle of Joy 🏸", subtitle: "Fahad", comment: "Let’s play badminton again soon — I miss our rallies, and I definitely owe you a rematch!!" },
+  { title: "Net Gain of Laughs 🎀", subtitle: "Fahad",  comment: "Let’s change the muzzle filter to 35 — a little longer!!" },
+  { title: "Drop Shot of Destiny 🏸", subtitle: "Fahad",  comment: "It’s time we go to the masjid and find you the best match!!" },
+  { title: "Spin Serve of Surprises 🎀", subtitle: "Fahad",  comment: "Big thanks for making me create a marriage profile!!" },
+  { title: "Racket Rally of Retail 🏸", subtitle: "Fahad",  comment: "Thanks for getting me hooked on SHEIN — my wallet is crying!!!" },
+  { title: "Court-side Cheers 🎀", subtitle: "Fahad", comment: "Happy Birthday, Sahar! May your special day sparkle with joy and your year ahead be as beautiful as you are!" },
+  { title: "Power Smash of Love 🏸", subtitle: "Ayush",  comment: "Happy birthday, bacha! Thank you for being the sweetest ADD-ON to my life ❤️!" },
+  { title: "First Serve Memories 🎀", subtitle: "Ayush", comment: "One of the cutest memories of ours is from the first day on court — I was rattling on about things while you were just staring... I was like, ‘God, will she please stop staring?’ and then laughing while looking to the other side… damn, she had already started judging me.!" },
+  { title: "Smiley Smash Point 🏸", subtitle: "Ayush",  comment: "You probably have the cutest smile BUA-JI on that bobblehead… so please just keep it together!" },
+  { title: "Endurance Rally 🎀", subtitle: "Ayush",  comment: "I love how you ask me something and then never actually listen… lol. Honestly, those 14 days of studying felt harder than my entire 2 years of Master’s. As for meditation — you learn it first and then teach me, okay? Chill Ayush, I’ll manage 😅✨" },
+  { title: "Grand Slam of Wishes 🏸🎀", subtitle: "Ayush", comment: "Happy birthday, Sahar! 💫 May you always be blessed with all the happiness in the world. Keep shining and smiling with that adorable bobblehead smile of yours. You’re truly so talented and sweet, and I know you’ll do amazingly well in life." },
+];
+
+
 
     function el(tag, cls){ const d=document.createElement(tag); if(cls) d.className=cls; return d; }
 
     /* ===== Background shuttles ===== */
     function spawnShuttles(){
       const bg=document.getElementById('bg'); bg.innerHTML='';
-      for(let i=0;i<22;i++){
+      const COUNT = 12; // fewer, cleaner
+      for(let i=0;i<COUNT;i++){
         const s=el('div','bg-shuttle'); s.textContent='🏸';
         s.style.left=Math.random()*100+'vw';
-        s.style.animationDelay=(Math.random()*8)+'s';
-        s.style.fontSize=(18 + Math.random()*12)+'px';
+        s.style.animationDelay=(Math.random()*10)+'s';
+        s.style.fontSize=(30 + Math.random()*16)+'px'; // larger overall
         bg.appendChild(s);
       }
     }
 
-    /* ===== Confetti ===== */
+    /* ===== Confetti (lighter) ===== */
     function popConfetti(){
       const c=document.getElementById('confetti'); c.innerHTML='';
-      const N=80; const w=window.innerWidth;
+      const N=40; const w=window.innerWidth; // fewer pieces
       for(let i=0;i<N;i++){
         const p=el('span','piece');
         p.style.left=Math.random()*w+'px';
@@ -229,7 +243,7 @@
         p.style.transform=`translateY(-10vh) rotate(${Math.random()*180}deg)`;
         c.appendChild(p);
       }
-      setTimeout(()=> c.innerHTML='', 3800);
+      setTimeout(()=> c.innerHTML='', 4000);
     }
 
     /* ===== Mascot ===== */
@@ -256,17 +270,32 @@
     }
     function sparklesAroundMascot(){
       const spots=[[2,6],[60,0],[80,16],[10,50],[70,52]]
-      return spots.map(([l,t],i)=>`<div class="sparkle" style="left:${l}px; top:${t}px; animation-delay:${i*.2}s">✦</div>`).join('')
+      return spots.map(([l,t],i)=>`<div class="sparkle" style="left:${l}px; top:${t}px; animation-delay:${i*.25}s">✦</div>`).join('')
     }
 
-    /* ===== Floating hearts ===== */
+    /* ===== Floating hearts (bigger) ===== */
     function floatingHearts(){
       let hearts='';
       for(let i=0;i<3;i++){
         const delay=Math.random()*3; const left=20 + Math.random()*60;
-        hearts += `<div class="float" style="left:${left}%; animation-delay:${delay}s">♥</div>`;
+        const emoji = Math.random()>.5 ? '💖' : '💝';
+        hearts += `<div class="float" style="left:${left}%; animation-delay:${delay}s">${emoji}</div>`;
       }
       return hearts;
+    }
+
+    /* ===== Card sparkle trail on tap (cute) ===== */
+    function sparkleBurst(x,y){
+      const k=8;
+      for(let i=0;i<k;i++){
+        const s=el('div'); s.textContent=['✨','✦','⭐️'][i%3]; s.style.position='fixed'; s.style.left=x+'px'; s.style.top=y+'px'; s.style.opacity='0.9'; s.style.pointerEvents='none'; s.style.transition='transform 600ms ease, opacity 600ms ease';
+        document.body.appendChild(s);
+        const ang = (Math.PI*2)*(i/k); const dist = 24 + Math.random()*18;
+        requestAnimationFrame(()=>{
+          s.style.transform=`translate(${Math.cos(ang)*dist}px, ${Math.sin(ang)*dist}px)`; s.style.opacity='0';
+        });
+        setTimeout(()=> s.remove(), 650);
+      }
     }
 
     /* ===== Deck ===== */
@@ -289,11 +318,12 @@
         inner += floatingHearts();
         card.insertAdjacentHTML('beforeend', inner);
 
-        card.addEventListener('click', function(){
+        card.addEventListener('click', function(ev){
           const cards=[...document.querySelectorAll('.card')];
           const top=Math.max(...cards.map(c=>parseInt(c.style.zIndex)));
           if(parseInt(this.style.zIndex)===top){
             this.classList.add('r'+(idx%10)); this.style.zIndex=1; popConfetti();
+            sparkleBurst(ev.clientX, ev.clientY);
             if(!musicStarted){ startMusic(); showNotesBurst(); }
           }
         });
@@ -304,12 +334,12 @@
 
     function restartDeck(){ buildDeck(); spawnShuttles(); }
 
-    // ===== 3D tilt parallax on mouse move =====
+    // ===== 3D tilt parallax on mouse move (subtle) =====
     (function(){
       const tiltEl = document.querySelector('.tilt');
       window.addEventListener('mousemove', (e)=>{
-        const x=(e.clientX/window.innerWidth - .5)*10; // -5..5
-        const y=(e.clientY/window.innerHeight - .5)*-10; // -5..5
+        const x=(e.clientX/window.innerWidth - .5)*8; // smaller range
+        const y=(e.clientY/window.innerHeight - .5)*-8;
         tiltEl.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
       });
     })();
@@ -317,16 +347,12 @@
     // ===== Music (WebAudio) — Happy Birthday melody =====
     let audioCtx, master, musicStarted=false, isMuted=false;
     const melody = [
-      // "Happy Birthday to you"
       ['G4',0.5],['G4',0.5],['A4',1],['G4',1],['C5',1],['B4',2],
-      // "Happy Birthday to you"
       ['G4',0.5],['G4',0.5],['A4',1],['G4',1],['D5',1],['C5',2],
-      // "Happy Birthday dear ..."
       ['G4',0.5],['G4',0.5],['G5',1],['E5',1],['C5',1],['B4',1],['A4',1],
-      // "Happy Birthday to you"
       ['F5',0.5],['F5',0.5],['E5',1],['C5',1],['D5',1],['C5',2]
     ];
-    const tempo = 120; // bpm
+    const tempo = 108; // slightly slower
 
     function freqOf(note){
       const A4=440; const map={'C':-9,'C#':-8,'Db':-8,'D':-7,'D#':-6,'Eb':-6,'E':-5,'F':-4,'F#':-3,'Gb':-3,'G':-2,'G#':-1,'Ab':-1,'A':0,'A#':1,'Bb':1,'B':2};
@@ -334,7 +360,7 @@
     }
 
     function startAudio(){
-      if(!audioCtx){ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); master=audioCtx.createGain(); master.gain.value=.18; master.connect(audioCtx.destination); }
+      if(!audioCtx){ audioCtx = new (window.AudioContext||window.webkitAudioContext)(); master=audioCtx.createGain(); master.gain.value=.16; master.connect(audioCtx.destination); }
     }
 
     function playNoteAt(freq, when, dur){
@@ -350,25 +376,24 @@
     function startMusic(){
       startAudio(); musicStarted=true; const beat = 60/tempo; let t=audioCtx.currentTime + .05;
       melody.forEach(([n,len])=>{ playNoteAt(freqOf(n), t, len*beat); t += len*beat; });
-      // loop after a short pause
       const total = melody.reduce((s, [,l])=>s+l,0) * beat; // seconds
       loopId = setInterval(()=>{
         if(!isMuted){
           let t=audioCtx.currentTime + .05; melody.forEach(([n,len])=>{ playNoteAt(freqOf(n), t, len*beat); t += len*beat; });
           showNotesBurst();
         }
-      }, (total+0.6)*1000);
+      }, (total+0.8)*1000);
     }
 
     function toggleMusic(){
       if(!musicStarted){ startMusic(); return }
-      isMuted = !isMuted; master.gain.value = isMuted ? 0 : .18; document.getElementById('toggleMusic').textContent = isMuted ? '🔇' : '🔈';
+      isMuted = !isMuted; master.gain.value = isMuted ? 0 : .16; document.getElementById('toggleMusic').textContent = isMuted ? '🔇' : '🔈';
       showNotesBurst();
     }
 
     function showNotesBurst(){
       const holder=document.getElementById('notes');
-      for(let i=0;i<6;i++){
+      for(let i=0;i<5;i++){
         const n=el('div','note'); n.textContent = ['♪','♩','♫','♬'][Math.floor(Math.random()*4)];
         n.style.left = (Math.random()*6)+'px'; n.style.animationDelay = (Math.random()*0.2)+'s'; holder.appendChild(n);
         setTimeout(()=> n.remove(), 2200);
@@ -395,16 +420,16 @@
     function init(){ spawnShuttles(); buildDeck(); }
     init();
 
-    // ===== Optional: little balloons on random intervals =====
+    // ===== Optional: bigger balloons at gentle intervals =====
     setInterval(()=> {
       const heart=el('div','float');
       heart.textContent = Math.random()>.5 ? '🎈' : '💖';
       heart.style.left = (20+Math.random()*60)+'%';
-      heart.style.top = '70%';
-      heart.style.animationDuration = (2.8 + Math.random()*1.4)+'s';
+      heart.style.top = '72%';
+      heart.style.animationDuration = (3.6 + Math.random()*1.4)+'s';
       document.body.appendChild(heart);
-      setTimeout(()=> heart.remove(), 3200);
-    }, 1400);
+      setTimeout(()=> heart.remove(), 4200);
+    }, 1800);
   </script>
 </body>
 </html>
